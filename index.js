@@ -46,6 +46,8 @@ function addbranch() {
   }
   document.getElementById("inputtext").value = "";
   cloceme();
+  const cardHeading = document.querySelector('.cardHeading');
+ cardHeading.innerHTML = "";
 }
 function renderContent(){
 
