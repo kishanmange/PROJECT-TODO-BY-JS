@@ -89,6 +89,7 @@ body{
     background-color: white;
     border: 5px solid orangered;
     border-radius: 15px;
+    position: relative;
     /* position: absolute; */
     /* left: 0; */
     /* display: none; */
@@ -97,15 +98,19 @@ body{
     width: 100%;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 20px;
 }
 .end2btn{
     display: flex;
-    height: 200px;
+    /* height: 200px; */
     justify-content: flex-end;
     align-items: end;
     gap: 20px;
     margin-right: 20px;
+    BOTTOM: 10PX;
+    POSITION: absolute;
+    left :80px
    
     
 
@@ -130,4 +135,25 @@ body{
     left: 542px;
     z-index: 1;
     display: none;
+}
+.checked{
+    text-decoration: line-through;
+}
+.cardHeading{
+    color: white;
+    
+    font-size: 80px;
+    font-weight: 600;
+    text-align: center;
+    /* margin-left: auto; */
+    position: absolute;
+    padding-left: 613px ;
+}
+
+
+#back{
+    display: none;
+    position: relative;
+    top: 50px;
+    left: 60px;
 }
