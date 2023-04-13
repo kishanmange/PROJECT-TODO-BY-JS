@@ -12,6 +12,8 @@ card.innerHTML = ` <div class="card1" id="box1">
 function callme() {
   body.appendChild(card);
   card.style.display = "block";
+  const backButton = document.querySelector('#back')
+  backButton.style.display = 'none'
 }
 function cloceme() {
   card.style.display = "none";
@@ -28,7 +30,7 @@ function addbranch() {
   let item = {
     id: new Date().getTime(),
     title: inputtext,
-content : [],
+    content : [],
   };
 
   console.log(inputtext);
@@ -36,24 +38,40 @@ content : [],
    
     data.push(item);
     arraydata();
-    console.log(item);
-    console.log(data);
+    // console.log(item);
+    // console.log(data);
   } else {
-    // let branchcard = document.querySelector("#branchcard")
-    // branchcard.style.display= 'block'
-    alert(" Please Add Something Task");
+   
+    alert(" Please Add Titel ");
   }
   document.getElementById("inputtext").value = "";
   cloceme();
+}
+function renderContent(){
+
+  for(i=0;i<data.length;i++){
+    const ulElemnt = document.getElementById(`content-list-${data[i].id}`);
+    let child ="";
+  for ( j = 0;j < data[i].content.length; j++ ){
+    let content = data[i].content[j];
+     child += `<li class = "content ${content.done? "checked":""}" id = "${content.id}" onclick ="doneTask(${content.id}, ${data[i].id})">${content.contentText}</li>`
+  }
+  ulElemnt.innerHTML = child;
+
+}
+
 }
 
 function arraydata() {
   const cardcontainer = document.querySelector("#card-container");
   let child = "";
   for (let i = 0; i<data.length; i++) {
-    console.log("data[i]:", data[i]);
-    console.log(data[i].title);
-    child += `<div class="branchcard" id ='card_${data[i].id}'> <h2 class="heading">${data[i].title}
+    // console.log("data[i]:", data[i]);
+    // console.log(data[i].title);
+    child += `<div class="branchcard" id ='${data[i].id}'
+    > 
+    <h2 class="heading" value="${data[i].title}" 
+    onclick ="displayMyCard(${data[i].id}, this.getAttribute('value'))">${data[i].title}   
     </h2>
      <hr> 
      <ul id = "content-list-${data[i].id}">
@@ -66,18 +84,23 @@ function arraydata() {
   }
   
   cardcontainer.innerHTML = child;
+  renderContent()
+  const navBar = document.querySelector('#head')
+  navBar.style.display = 'block'
+
 }
 
 
 
 function DeleteCard(id){
   const cardcontainer = document.getElementById("card-container");
-const cdel2 = `card_${id}`;
+const cdel2 = `${id}`;
 const card =document.getElementById(cdel2);
-console.log(card);
+// console.log(card);
 card.parentNode.removeChild(card);
 data = data.filter(item => item.id != id);
-console.log(id);
+ backToAll()
+// console.log(id);
 
 
 
@@ -88,33 +111,9 @@ function showAddContentPopup(id){
  const popup2 = document.getElementById("popup2")
   popup2.style.display = "flex";
   cardId = id
-  console.log(cardId);
+  // console.log(cardId);
 }
-// function AddContentToCard(){
-  
-// // const cardId = `card_${id}`;
-// let contentListId = `content-list-${cardId}`;
-// const  UL= document.getElementById(contentListId);
 
-// console.log(UL);
-// let inputtext2 = document.getElementById("inputtext2").value;
-
-
-// console.log(inputtext2);
-
-// // if (inputtext2) {
-// //   document.getElementById("inputtext2").value = "";
-
-// //   const linode = document.createElement ("li");
-// //   linode.innerHTML = inputtext2;
-// //  UL.appendChild(linode);
-// //   cloceme();
-
-// // } else {
-// //   alert(" Please Add Something content");
-// // }
-
-// }
 function AddContentToCard() {
   const contentListId = `content-list-${cardId}`;
   console.log(contentListId);
@@ -128,9 +127,86 @@ function AddContentToCard() {
     const liNode = document.createElement("li");
 
     liNode.innerHTML = contentText;
+    liNode.className = "content";
     Ul.appendChild(liNode);
 
     cloceme()
-    // liNode.class
+    
+    for(i=0;i<data.length;i++){
+
+      if(data[i].id==cardId){
+        const  content = {
+          id: new Date().getTime(),
+          contentText: contentText,
+          done : false,
+        } 
+        data[i].content.push(content)
+      }
+    }
+    console.log(data);
+    renderContent()
 }
+
+} 
+function doneTask(taskId, cardId) {
+
+  
+  const contentId = `${taskId}`
+  const liElement = document.getElementById(contentId);
+  liElement.classList.toggle("checked");
+
+  for (let i=0;i<data.length;i++){
+      if (data[i].id ==cardId){
+        
+          for (let j=0;j<data[i].content.length;j++){
+              const content = data[i].content[j];
+              if(content.id == taskId){
+                  data[i].content[j].done = !data[i].content[j].done ;
+                  // data[i].content[j].done = true;
+              }
+          }
+      }
+  }
+ 
 }
+function displayMyCard(id, value){
+    console.log("js");
+    console.log("id" , id);
+    const addbtn1 = document.getElementById("addbtn1")
+  addbtn1.style.display = "block";
+
+  const cardHeading = document.querySelector('.cardHeading');
+  cardHeading.innerHTML = value;
+
+  const cards = document.querySelectorAll('.branchcard')
+  cards.forEach(allcards => {
+      allcards.style.display ='none';
+  });
+  const cardToShow = document.getElementById(id);
+  cardToShow.style.display = 'block'
+
+
+  const navBar = document.querySelector('#head')
+  navBar.style.display = 'none'
+
+  const backButton = document.querySelector('#back')
+  backButton.style.display = 'block'
+}
+
+
+function backToAll(){
+  const cards = document.querySelectorAll('.branchcard');
+  const cardHeading = document.querySelector('.cardHeading');
+ cardHeading.innerHTML = "";
+  cards.forEach(allcards => {
+      allcards.style.display ='block';
+  });
+  const navBar = document.querySelector('#head')
+  navBar.style.display = 'block'
+
+  const backButton = document.querySelector('#back')
+  backButton.style.display = 'none'
+
+}
+
+
