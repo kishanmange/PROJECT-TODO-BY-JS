@@ -9,20 +9,17 @@
   </head>
   <body>
     <div class="parent">
-      <span class="a1">
+      <span class="a1" id="head">
         <b class="task">Tasks</b> <span class="list"> List </span></span
       >
 
       
-      <div class="b1">
+      <div class="b1" id="addbtn1">
         <button onclick="callme()" class="plus">+</button>
-        <span class="items"> Add items</span>
-      
-
-
-
-        
+        <span class="items" onclick="callme()"> Add items</span>   
        </div>
+       <div class="cardHeading"></div>
+       <button id="back" onclick="backToAll()">Back</button>
        <div id="card-container"></div>
 
 
@@ -35,13 +32,7 @@
       </span>
         </div>
 
-      <!-- <div class="card1" id="box1">
-        <span class="c1">Add New List</span>
-        <input type="text" class="inp" />
-        <span id="99">
-        <button class="b98">Add</button> <button class="b97" onclick="cloceme()">Close</button></span>
-      </div>  -->
-    <!-- </div>  -->
+      
 
     
     
