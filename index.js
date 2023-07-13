@@ -2,6 +2,11 @@
 let card1 = document.getElementById("box1");
 let body = document.querySelector("body");
 let card = document.createElement("div");
+let addbtn1 = document.getElementById("addbtn1");
+let head = document.getElementById("head");
+// let b98 = document.getElementById("b98");
+
+
 
 card.innerHTML = ` <div class="card1" id="box1">
 <span class="c1">Add New List</span>
@@ -10,12 +15,20 @@ card.innerHTML = ` <div class="card1" id="box1">
 </div> `;
 
 function callme() {
+
+
+  head.style.filter = "blur(6px)";
+  addbtn1.style.filter = "blur(6px)";
   body.appendChild(card);
+ 
   card.style.display = "block";
   const backButton = document.querySelector('#back')
   backButton.style.display = 'none'
 }
 function cloceme() {
+
+  head.style.filter = "blur(0px)";
+  addbtn1.style.filter = "blur(0px)";
   card.style.display = "none";
   let c1= document.getElementById("popup2")
   c1.style.display = "none";
@@ -26,6 +39,8 @@ let cardId;
 
 
 function addbranch() {
+  head.style.filter = "blur(0px)";
+  addbtn1.style.filter = "blur(0px)";
   let inputtext = document.getElementById("inputtext").value;
   let item = {
     id: new Date().getTime(),
