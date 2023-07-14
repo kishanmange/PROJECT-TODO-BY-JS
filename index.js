@@ -4,6 +4,7 @@ let body = document.querySelector("body");
 let card = document.createElement("div");
 let addbtn1 = document.getElementById("addbtn1");
 let head = document.getElementById("head");
+let container = document.getElementById("card-container")
 // let b98 = document.getElementById("b98");
 
 
@@ -19,6 +20,7 @@ function callme() {
 
   head.style.filter = "blur(6px)";
   addbtn1.style.filter = "blur(6px)";
+  container.style.filter = "blur(6px)"
   body.appendChild(card);
  
   card.style.display = "block";
@@ -29,6 +31,8 @@ function cloceme() {
 
   head.style.filter = "blur(0px)";
   addbtn1.style.filter = "blur(0px)";
+  container.style.filter = "blur(0px)"
+
   card.style.display = "none";
   let c1= document.getElementById("popup2")
   c1.style.display = "none";
@@ -41,6 +45,7 @@ let cardId;
 function addbranch() {
   head.style.filter = "blur(0px)";
   addbtn1.style.filter = "blur(0px)";
+  container.style.filter = "blur(0px)"
   let inputtext = document.getElementById("inputtext").value;
   let item = {
     id: new Date().getTime(),
