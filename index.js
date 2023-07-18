@@ -20,7 +20,7 @@ function callme() {
 
   head.style.filter = "blur(6px)";
   addbtn1.style.filter = "blur(6px)";
-  container.style.filter = "blur(6px)"
+  container.style.filter = "blur(6px)";
   body.appendChild(card);
  
   card.style.display = "block";
@@ -46,6 +46,8 @@ function addbranch() {
   head.style.filter = "blur(0px)";
   addbtn1.style.filter = "blur(0px)";
   container.style.filter = "blur(0px)"
+
+  
   let inputtext = document.getElementById("inputtext").value;
   let item = {
     id: new Date().getTime(),
@@ -129,6 +131,9 @@ data = data.filter(item => item.id != id);
 }
 
 function showAddContentPopup(id){
+  head.style.filter = "blur(6px)";
+  addbtn1.style.filter = "blur(6px)";
+  container.style.filter = "blur(6px)";
   console.log(id);
  const popup2 = document.getElementById("popup2")
   popup2.style.display = "flex";
@@ -137,8 +142,13 @@ function showAddContentPopup(id){
 }
 
 function AddContentToCard() {
+  head.style.filter = "blur(6px)";
+  addbtn1.style.filter = "blur(6px)";
+  container.style.filter = "blur(6px)";
+
+
   const contentListId = `content-list-${cardId}`;
-  console.log(contentListId);
+ 
   const Ul = document.getElementById(contentListId);
   const contentText = document.getElementById('inputtext2').value;
   console.log(contentText);
