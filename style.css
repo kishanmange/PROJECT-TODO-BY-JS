@@ -184,8 +184,8 @@ body{
     }
     #cdh{
         position: fixed;
-        top: 175px;
-        left: -460px;
+        top: 163px;
+        left: -513px;
         color: #f9eaea;
         height: 30px;
         width: 100px;
@@ -194,11 +194,17 @@ body{
        
     } 
     #back{
-        width: 50%;
+        width: 14%;
         position: absolute;
-        top: 50px;
-        left: 100px;
+        top: 669px;
+        left: 30px;
     }
+    /* .plus{
+        position: relative;
+    top: -68px;
+    left: 61px;
+    } */
+    
 }
    
   
